@@ -32,7 +32,7 @@ directly satisfies the challenge requirements:
 ## Tech stack (all free)
 
 - **Streamlit** — chat UI + document upload
-- **Google Gemini** (`gemini-2.5-flash`, free API tier) — the language/reasoning layer
+- **Google Gemini** (`gemini-3.8-flash`, free API tier) — the language/reasoning layer
 - **sentence-transformers** (`all-MiniLM-L6-v2`) — local, free embeddings (no API cost)
 - **ChromaDB** — local persistent vector store
 

@@ -13,7 +13,7 @@ load_dotenv()
 # --- Gemini (LLM) ---------------------------------------------------------
 # Free API key from https://aistudio.google.com/apikey
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
 # --- Embeddings -----------------------------------------------------------
 # Runs locally (free, no API cost). First run downloads the model (~90 MB).
