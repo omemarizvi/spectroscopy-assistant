@@ -101,6 +101,20 @@ class VectorStore:
             for d, m, dist in zip(docs, metas, dists)
         ]
 
+    def reset(self) -> None:
+        """Delete ALL stored chunks and recreate an empty collection.
+
+        Use this to rebuild the knowledge base from scratch so that documents
+        removed from data/ are also removed from the index. (upsert only adds;
+        it never deletes, so a plain re-ingest would leave stale chunks.)
+        """
+        self._client.delete_collection(name=config.COLLECTION_NAME)
+        self._collection = self._client.get_or_create_collection(
+            name=config.COLLECTION_NAME,
+            embedding_function=self._embed_fn,
+            metadata={"hnsw:space": "cosine"},
+        )
+
     def count(self) -> int:
         """Number of chunks currently stored."""
         return self._collection.count()
