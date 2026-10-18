@@ -32,7 +32,7 @@ directly satisfies the challenge requirements:
 ## Tech stack (all free)
 
 - **Streamlit** — chat UI + document upload
-- **Google Gemini** (`gemini-3.8-flash`, free API tier) — the language/reasoning layer
+- **Google Gemini** (`gemini-3.5-flash-lite` by default, free API tier) — the language/reasoning layer
 - **sentence-transformers** (`all-MiniLM-L6-v2`) — local, free embeddings (no API cost)
 - **ChromaDB** — local persistent vector store
 
@@ -168,6 +168,20 @@ Open the URL it prints (usually <http://localhost:8501>).
    method(s) with citations, and suggest a feasibility experiment.
 4. Try a question with **no** supporting document to show it refuses / asks for
    more instead of hallucinating.
+
+## Free-tier rate limits (important for the demo)
+
+Gemini's free tier limits requests **per day, per model**:
+
+- Full Flash models (e.g. `gemini-3.8-flash`): ~**20 requests/day** — smart but
+  easy to exhaust while testing.
+- Flash-Lite models (e.g. `gemini-3.5-flash-lite`, the default here):
+  ~**500 requests/day** — plenty for testing, the D01–D08 and H01–H06 batches
+  (~14 requests total), and a live demo.
+
+If you hit a `429 RESOURCE_EXHAUSTED` error, you've used the day's quota for
+that model. Either switch `GEMINI_MODEL` in `.env` to a Flash-Lite model, wait
+for the daily reset (midnight Pacific), or enable billing for higher limits.
 
 ## Configuration knobs
 
